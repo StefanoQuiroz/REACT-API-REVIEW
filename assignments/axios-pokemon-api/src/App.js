@@ -4,9 +4,9 @@ import AxiosPokemon from './components/AxiosPokemon';
 
 function App() {
   return (
-    <div className="App">
+    <>
       <AxiosPokemon/>
-    </div>
+    </>
   );
 }
 
