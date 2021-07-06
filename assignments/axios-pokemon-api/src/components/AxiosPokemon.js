@@ -38,9 +38,12 @@ const Li = styled.li`
     color: green;
     font-style: italic;
     font-size: 1.5rem;
-    text-transform: capitalize;
+    //text-transform: capitalize;
 `;
 const AxiosPokemon = () => {
+
+    const [pokemonName, setPokemonName] = useState("");
+
     const [pokemons, setPokemons] = useState({
         pokemonsList: []
     })
@@ -53,11 +56,34 @@ const AxiosPokemon = () => {
             .catch(err => console.error(err));
     }
 
-    const lista = (pokemons.pokemonsList) ? pokemons.pokemonsList.map((item, index) => (<Li key={index}>{item.name}</Li>)) : null;
+    
+    const findOne  = (pokemons.pokemonsList) && pokemons.pokemonsList.map((item) => (item.name === pokemonName ? true : false));
+        
+    const lista = (pokemons.pokemonsList) && pokemons.pokemonsList.map((item, index) => (<Li key={index}>{item.name}</Li>));
+
+    const findPokemon = () => {
+        if(findOne && findOne.includes(true)){
+            return "Existe"
+        }
+        else{
+            return "No existe";
+        }
+    }
+    /* const onSubmit = (event) => {
+        event.preventDefault();
+    } */
+
 
     return (
         <Container>
-            <Button onClick={onClick}>Fetch Pokemon</Button>
+            <div>
+                <div>
+                    <label htmlFor="name">Search Pokemon Name: </label>
+                    <input type="text" id="name" value={pokemonName} onChange={(event) => setPokemonName(event.target.value)}/>
+                </div>
+                <Button onClick={onClick}>Fetch Pokemon</Button>
+                {findPokemon()}
+            </div>
             <Ul>{lista}</Ul>
         </Container>
     );
