@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { makeStyles, FormControl, InputLabel, NativeSelect, Input, Button} from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
+
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -17,14 +18,16 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 const Select = () => {
+    //Hooks section
     const classes = useStyles();
+    const idInput = useRef(null);
     const [starwars, setStarWars]=useState({
         options: []
     })
 
     const [state, setState] = useState({
         input: 0,
-        select: ""
+        selectOption: ""
     });
 
     /* useEffect(()=>{
@@ -54,6 +57,7 @@ const Select = () => {
 
     const onSubmit = (event) => {
         event.preventDefault();
+        idInput.current.value=""
         console.log(state);
     }
 
@@ -65,15 +69,15 @@ const Select = () => {
         <form onSubmit = {onSubmit}>
             <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="search"></InputLabel>
-                <NativeSelect labelId="search" id="select" name="selectOption" value={state.select} onChange={onChange} >
+                <NativeSelect id="select" name="selectOption" value={state.select} onChange={onChange} >
                     {option}
                 </NativeSelect>
             </FormControl>
             <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="id">Id </InputLabel>
-                <Input id="id" type="number" name="input" value={state.input} onChange={onChange}/>
+                <Input id="id" type="number" ref={idInput} name="input" /* value={state.input} */ onChange={onChange}/>
             </FormControl>
-            <Button variant="contained" color="default" className={classes.button} endIcon={<SendIcon/>}>Send</Button>
+            <Button type="submit" variant="contained" color="default" className={classes.button} endIcon={<SendIcon/>}>Send</Button>
         </form>
     );
 }
