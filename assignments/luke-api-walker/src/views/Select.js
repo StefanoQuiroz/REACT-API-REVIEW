@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Form, Input, FormGroup, Label, Button } from 'reactstrap'; 
+import axios from 'axios';
 
 const Select = () => {
 
@@ -6,37 +8,41 @@ const Select = () => {
         options: []
     })
 
-    useEffect(()=>{
+    /* useEffect(()=>{
         fetch("https://swapi.dev/api/")
             .then(res => res.json())
             .then(res => setStarWars({
                 options: Object.entries(res)
             }))
-    }, [])
+    }, []) */
+    
+    useEffect(()=>{
+        axios.get("https://swapi.dev/api/")
+            .then(res => setStarWars({
+                options: Object.entries(res.data)
+            }))
+}, [])
+
+
     console.log(starwars.options);
     //Object.entries {propiedad} => [propiedad]
-    const option = starwars.options.map(([value, url], index) => (<option key={index} value={url}>{value.replace(/\b\w/g, c => c.toUpperCase())}</option>))
+    const option = starwars.options && starwars.options.map(([value, url], index) => (<option key={index} value={url}>{value.replace(/\b\w/g, c => c.toUpperCase())}</option>))
 
 
     return (
-        <form>
-            <div>
-                <label htmlFor="search">Search for: </label>
-                <select id="search" name="select">
-                    {/* <option value="People">People</option>
-                    <option value="Films">Films</option>
-                    <option value="Starships">Starships</option>
-                    <option value="Vehicles">Vehicles</option>
-                    <option value="Species">Species</option> */}
+        <Form inline>
+            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                <Label for="search" className="mr-sm-2">Search for: </Label>
+                <Input type="select" id="search" name="select">
                     {option}
-                </select>
-            </div>
-            <div>
-                <label htmlFor="id">id </label>
-                <input type="number"/>
-                <input type="submit" value="Search"/>
-            </div>                        
-        </form>
+                </Input>
+            </FormGroup>
+            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                <Label for="id" className="mr-sm-2">id </Label>
+                <Input type="number" id="id"/>
+            </FormGroup>
+            <Button>Search</Button>
+        </Form>
     );
 }
 

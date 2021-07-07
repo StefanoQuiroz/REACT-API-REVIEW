@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import Select from './views/Select';
 
 function App() {
