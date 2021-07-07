@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { makeStyles, FormControl, InputLabel, NativeSelect, Input } from '@material-ui/core';
+import { makeStyles, FormControl, InputLabel, NativeSelect, Input, Button} from '@material-ui/core';
+import SendIcon from '@material-ui/icons/Send';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -10,6 +11,9 @@ const useStyles = makeStyles((theme) => ({
     selectEmpty: {
       marginTop: theme.spacing(3),
     },
+    button: {
+        marginTop: theme.spacing(3)
+    }
   }));
 
 const Select = () => {
@@ -51,6 +55,7 @@ const Select = () => {
                 <InputLabel htmlFor="id">Id </InputLabel>
                 <Input id="id" type="text"/>
             </FormControl>
+            <Button variant="contained" color="default" className={classes.button} endIcon={<SendIcon/>}>Send</Button>
         </form>
     );
 }
