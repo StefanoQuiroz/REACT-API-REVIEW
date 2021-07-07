@@ -1,9 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Input, FormGroup, Label, Button } from 'reactstrap'; 
 import axios from 'axios';
+import { makeStyles, FormControl, InputLabel, NativeSelect, Input } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(3),
+    },
+  }));
 
 const Select = () => {
-
+    const classes = useStyles();
     const [starwars, setStarWars]=useState({
         options: []
     })
@@ -30,19 +40,18 @@ const Select = () => {
 
 
     return (
-        <Form inline>
-            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                <Label for="search" className="mr-sm-2">Search for: </Label>
-                <Input type="select" id="search" name="select">
+        <form>
+            <FormControl className={classes.formControl}>
+                <InputLabel htmlFor="search"></InputLabel>
+                <NativeSelect labelId="search" id="select">
                     {option}
-                </Input>
-            </FormGroup>
-            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                <Label for="id" className="mr-sm-2">id </Label>
-                <Input type="number" id="id"/>
-            </FormGroup>
-            <Button>Search</Button>
-        </Form>
+                </NativeSelect>
+            </FormControl>
+            <FormControl className={classes.formControl}>
+                <InputLabel htmlFor="id">Id </InputLabel>
+                <Input id="id" type="text"/>
+            </FormControl>
+        </form>
     );
 }
 
