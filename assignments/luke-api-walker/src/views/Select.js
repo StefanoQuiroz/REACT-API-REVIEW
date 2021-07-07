@@ -22,6 +22,11 @@ const Select = () => {
         options: []
     })
 
+    const [state, setState] = useState({
+        input: 0,
+        select: ""
+    });
+
     /* useEffect(()=>{
         fetch("https://swapi.dev/api/")
             .then(res => res.json())
@@ -35,25 +40,38 @@ const Select = () => {
             .then(res => setStarWars({
                 options: Object.entries(res.data)
             }))
-}, [])
+    }, [])
 
 
-    console.log(starwars.options);
+    const onChange = (event) => {
+        const {name, value} = event.target;
+        setState({
+            ...state,
+            [name] : value
+        })
+    } 
+
+
+    const onSubmit = (event) => {
+        event.preventDefault();
+        console.log(state);
+    }
+
+    //console.log(starwars.options);
     //Object.entries {propiedad} => [propiedad]
     const option = starwars.options && starwars.options.map(([value, url], index) => (<option key={index} value={url}>{value.replace(/\b\w/g, c => c.toUpperCase())}</option>))
-
-
+    
     return (
-        <form>
+        <form onSubmit = {onSubmit}>
             <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="search"></InputLabel>
-                <NativeSelect labelId="search" id="select">
+                <NativeSelect labelId="search" id="select" name="selectOption" value={state.select} onChange={onChange} >
                     {option}
                 </NativeSelect>
             </FormControl>
             <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="id">Id </InputLabel>
-                <Input id="id" type="text"/>
+                <Input id="id" type="number" name="input" value={state.input} onChange={onChange}/>
             </FormControl>
             <Button variant="contained" color="default" className={classes.button} endIcon={<SendIcon/>}>Send</Button>
         </form>
