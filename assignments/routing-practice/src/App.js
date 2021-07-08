@@ -7,7 +7,7 @@ import AnOtherpage from './views/AnOtherpage';
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Router>
         <Switch>
           <Route component={AnOtherpage} path="/:id/:color/:background"/>
@@ -15,8 +15,7 @@ function App() {
           <Route component={Home} path="/"/>
         </Switch>
       </Router>
-      <Home/>
-    </div>
+    </>
   );
 }
 
