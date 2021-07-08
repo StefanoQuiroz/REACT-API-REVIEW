@@ -1,1 +1,14 @@
+
 GET https://swapi.dev/api/
+
+###
+
+GET https://swapi.dev/api/species/
+
+###
+
+GET https://swapi.dev/api/species/2
+
+###People
+
+GET https://swapi.dev/api/people/1
