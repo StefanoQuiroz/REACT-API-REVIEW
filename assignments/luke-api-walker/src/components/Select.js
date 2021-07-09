@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import {FormGroup, Label, Input} from 'reactstrap';
 const Select = () => {
     const [options, setOptions] = useState([]);
 
@@ -22,14 +22,12 @@ const Select = () => {
 
     const option = options && options.map(([key, value], index) => (<option key={index} value={value}>{key.replace(/\b\w/g, c=> c.toUpperCase())}</option>))
     return (
-        <>  
-            <div>
-                <label htmlFor="select"></label>
-                <select name="categories" id="select">
+            <FormGroup row className="mb-2 mr-sm-2 mb-sm-0">
+                <Label for="select" className="mr-sm-2"></Label>
+                <Input type="select" name="categories" id="select">
                     {option}
-                </select>
-            </div>  
-        </>
+                </Input>
+            </FormGroup>
     );
 }
 

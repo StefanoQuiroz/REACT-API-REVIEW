@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { MyContext } from '../App';
 import Select from '../components/Select';
-import Input from '../components/Input';
+import InputLabel from '../components/InputLabel';
 import Search from '../components/Search';
+import {Form} from 'reactstrap';
 
 const Menu = () => {
 
@@ -10,7 +11,7 @@ const Menu = () => {
    
 
     const onChange = (event) => {
-        const form = event.target.closest("form");
+        const form = event.target.closest("Form");
         const formData = new FormData(form);
         const data = {};
         for (const [key, value] of formData.entries()){
@@ -54,11 +55,11 @@ const Menu = () => {
     }
 
     return (
-        <form onSubmit={onSubmit} onChange={onChange}>
+        <Form inline onSubmit={onSubmit} onChange={onChange}>
             <Select/>
-            <Input/>
+            <InputLabel/>
             <Search/>    
-        </form>
+        </Form>
     );
 }
 

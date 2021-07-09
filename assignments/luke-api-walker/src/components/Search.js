@@ -1,10 +1,10 @@
 import React from 'react';
-
+import { Button } from 'reactstrap';
 const Search = () => {
     return (
-        <>
-            <input type="submit" value="Search"/>
-        </>
+        
+            <Button type="submit">Search</Button>
+        
     );
 }
 
