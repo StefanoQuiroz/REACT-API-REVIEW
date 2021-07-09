@@ -11,4 +11,4 @@ GET https://swapi.dev/api/species/2
 
 ###People
 
-GET https://swapi.dev/api/people/1
+GET https://swapi.dev/api/planets/1

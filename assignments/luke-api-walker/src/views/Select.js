@@ -67,12 +67,12 @@ const Select = () => {
         //console.log(state);
         
         
-        
-        
         const arr = axios.get(url)
             .then(res => Object.entries(res.data))
             .catch(err => console.error(err));
-        const [[, title]] = arr;
+            
+        console.log(arr);
+        const [[,title]] = arr;
         setResultProps({
             title,
             paraph: arr.slice(1)
